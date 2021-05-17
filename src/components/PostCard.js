@@ -4,15 +4,16 @@ import { Button } from "baseui/button";
 import { Link, Redirect } from "react-router-dom";
 import { formatDateTime } from "./PostDetail";
 export default function PostCard({ content, id, title, author, createdAt }) {
-  //const [redirect,setRedirect] = useState(false)
+  
   return (
     <>
       <Card
-        title={title}
+        
         overrides={{
           Body: {
             style: ({ $theme }) => ({
               outline: `${$theme.colors.warning200} solid`,
+            
             }),
           },
           Contents: {
@@ -24,8 +25,10 @@ export default function PostCard({ content, id, title, author, createdAt }) {
         }}
       >
         <StyledBody>
-          <p>{id}</p>
-          <p>
+        
+        <div style={{ height :"150px", overflow:"hidden"  }} >
+          <h2>{title}</h2>
+        <p>
             {author +
               " . " +
               formatDateTime(createdAt).date +
@@ -33,27 +36,27 @@ export default function PostCard({ content, id, title, author, createdAt }) {
               formatDateTime(createdAt).time}{" "}
           </p>
 
-          <p style={{ height: "50px", overflow: "hidden" }}>{content}</p>
+          <p  >{content}</p>
+        </div>
         </StyledBody>
         <StyledAction>
-          <div style={{
+          <div
+            style={{
               width: "100%",
-              textAlign :"center",
+              textAlign: "center",
               backgroundColor: "black",
-              padding :"15px",
-              
-              boxSizing :"border-box"
-            }} >
-                        <Link
-                        style={{color :"white",textDecoration:"none"}}
-            to={`/posts/${id}`}
-            
+              padding: "15px",
+
+              boxSizing: "border-box",
+            }}
           >
-            Read More
-          </Link>
-
+            <Link
+              style={{ color: "white", textDecoration: "none" }}
+              to={`/posts/${id}`}
+            >
+              Read More
+            </Link>
           </div>
-
         </StyledAction>
       </Card>
     </>
