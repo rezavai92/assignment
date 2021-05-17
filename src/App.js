@@ -1,6 +1,7 @@
 import React from   'react'
 import {Client as Styletron} from 'styletron-engine-atomic';
 import {Provider as StyletronProvider} from 'styletron-react';
+import PostDetail from './components/PostDetail'
 import {LightTheme, BaseProvider, styled} from 'baseui';
 import Postlist from './components/Postlist'
 import Home from './components/Home'
@@ -25,8 +26,10 @@ const App = ()=>{
   return(<div>
      <BaseUIWrapper>
       <Router>
+        <Route path = "/posts/:id" exact component={PostDetail} />
         <Route path="/posts" exact component={Postlist} />
          <Route path="/" exact component={Home} />
+
       </Router>
      </BaseUIWrapper>
   </div>)

@@ -5,6 +5,7 @@ import {
     StyledAction
   } from "baseui/card";
   import { Button } from "baseui/button";
+  import {Link} from "react-router-dom"
 export default function PostCard({content,id,title}) {
     return (
         <Card 
@@ -34,13 +35,16 @@ export default function PostCard({content,id,title}) {
            <p style={{maxHeight :"100px",overflow :"hidden"}} >{content}</p>
         </StyledBody>
         <StyledAction>
-          <Button
-            overrides={{
-              BaseButton: { style: { width: "100%" } }
-            }}
+          <div
+            
+
+
           >
-            Button Label
-          </Button>
+            <Link to={`/posts/${id}`}  >
+            Read More
+            </Link>
+           
+          </div>
         </StyledAction>
       </Card>
     )
