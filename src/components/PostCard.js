@@ -1,51 +1,61 @@
-import React from 'react'
-import {
-    Card,
-    StyledBody,
-    StyledAction
-  } from "baseui/card";
-  import { Button } from "baseui/button";
-  import {Link} from "react-router-dom"
-export default function PostCard({content,id,title}) {
-    return (
-        <Card 
+import React, { useState } from "react";
+import { Card, StyledBody, StyledAction } from "baseui/card";
+import { Button } from "baseui/button";
+import { Link, Redirect } from "react-router-dom";
+import { formatDateTime } from "./PostDetail";
+export default function PostCard({ content, id, title, author, createdAt }) {
+  //const [redirect,setRedirect] = useState(false)
+  return (
+    <>
+      <Card
         title={title}
-         overrides={{
+        overrides={{
+          Body: {
+            style: ({ $theme }) => ({
+              outline: `${$theme.colors.warning200} solid`,
+            }),
+          },
+          Contents: {
+            style: ({ $theme }) => ({
+              outline: `${$theme.colors.warning200} solid`,
+              backgroundColor: $theme.colors.warning200,
+            }),
+          },
+        }}
+      >
+        <StyledBody>
+          <p>{id}</p>
+          <p>
+            {author +
+              " . " +
+              formatDateTime(createdAt).date +
+              " " +
+              formatDateTime(createdAt).time}{" "}
+          </p>
 
-            Body: {
-                style: ({ $theme }) => ({
-                  outline: `${$theme.colors.warning200} solid`,
-                 
-                  
-                  
-                })
-              },
-              Contents: {
-                style: ({ $theme }) => ({
-                  outline: `${$theme.colors.warning200} solid`,
-                  backgroundColor: $theme.colors.warning200,
-                                    
-                  
-                })
-              }
-         }}
-        > 
-        <StyledBody   >
-          
-           <p style={{maxHeight :"100px",overflow :"hidden"}} >{content}</p>
+          <p style={{ height: "50px", overflow: "hidden" }}>{content}</p>
         </StyledBody>
         <StyledAction>
-          <div
+          <div style={{
+              width: "100%",
+              textAlign :"center",
+              backgroundColor: "black",
+              padding :"15px",
+              
+              boxSizing :"border-box"
+            }} >
+                        <Link
+                        style={{color :"white",textDecoration:"none"}}
+            to={`/posts/${id}`}
             
-
-
           >
-            <Link to={`/posts/${id}`}  >
             Read More
-            </Link>
-           
+          </Link>
+
           </div>
+
         </StyledAction>
       </Card>
-    )
+    </>
+  );
 }

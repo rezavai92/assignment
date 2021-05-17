@@ -5,6 +5,7 @@ import PostDetail from './components/PostDetail'
 import {LightTheme, BaseProvider, styled} from 'baseui';
 import Postlist from './components/Postlist'
 import Home from './components/Home'
+import NotFound from './components/NotFound'
 import {
   BrowserRouter as Router,
   Switch,
@@ -26,10 +27,12 @@ const App = ()=>{
   return(<div>
      <BaseUIWrapper>
       <Router>
+        <Switch>
         <Route path = "/posts/:id" exact component={PostDetail} />
         <Route path="/posts" exact component={Postlist} />
          <Route path="/" exact component={Home} />
-
+        <Route  component ={NotFound} />
+        </Switch>
       </Router>
      </BaseUIWrapper>
   </div>)
